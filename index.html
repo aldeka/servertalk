@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=1024, user-scalable=no">
+
+  <title>Turn Your Computer Into a Server</title>
+
+  <!-- Required stylesheet -->
+  <link rel="stylesheet" media="screen" href="core/deck.core.css">
+
+  <!-- Extension CSS files go here. Remove or add as needed. -->
+  <link rel="stylesheet" media="screen" href="extensions/goto/deck.goto.css">
+  <link rel="stylesheet" media="screen" href="extensions/menu/deck.menu.css">
+  <!--   <link rel="stylesheet" media="screen" href="extensions/navigation/deck.navigation.css"> -->
+  <link rel="stylesheet" media="screen" href="extensions/status/deck.status.css">
+  <link rel="stylesheet" media="screen" href="extensions/scale/deck.scale.css">
+
+  <!-- Style theme. More available in /themes/style/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="themes/style/my_swiss.css">
+
+  <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="themes/transition/horizontal-slide.css">
+
+  <!-- Basic black and white print styles -->
+  <link rel="stylesheet" media="print" href="core/print.css">
+
+  <!-- Required Modernizr file -->
+  <script src="modernizr.custom.js"></script>
+</head>
+<body>
+  <div class="deck-container">
+
+    <!-- Begin slides. Just make elements with a class of slide. -->
+
+    <section class="slide">
+      <div class="vcenter">
+        <h1>Turn Your Computer Into a Server</h1>
+        <h4>Karen Rustad &amp; Asheesh Laroia</h4>
+        <!--<h4>PyCon 2014 &#8226; Montréal, QC</h4>-->
+      </div>
+    </section>
+
+    <section class="slide">
+      <br>
+        <h2>Outline, part one</h2>
+        <ul>
+          <li>A simple sharing scenario</li>
+          <li>Python's SimpleHTTPServer</li>
+          <li>Ports and interfaces</li>
+          <li>Private IP addresses</li>
+          <li>Public IP addresses</li>
+          <li>How NAT works</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <img class="chibi" src="img/me.png">
+        <h3>Building a web app</h3>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter leftie">
+        <span class="smaller">
+        <code>$ python manage.py runserver 8000<br>
+Validating models...<br>
+<br>
+0 errors found<br>
+March 07, 2014 - 23:37:49<br>
+Django version 1.5.4, using settings 'myapp.settings'<br>
+Development server is running at http://127.0.0.1:8000/<br>
+Quit the server with CONTROL-C.</span></code>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <img class="chibi" src="img/me.png">
+        <code>http://localhost:8000</code>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter"><img src="img/itworks.png"></div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <img class="chibi" src="img/you.png">
+        <h3>Show it to your roommate!</h3>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <img class="chibi" src="img/you.png">
+        <code>http://localhost:8000</code>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter"><img src="img/404.png"></div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <img class="chibi" src="img/you.png">
+        <code>http://mycomputer:8000</code>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter"><img src="img/404.png"></div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        Why doesn't this work?
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h2>Basic local sharing</h2>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter leftie">
+        <code>
+          $ cd my_project_directory<br>
+          $ python -m SimpleHTTPServer<br>
+        </code>
+        <code>
+          Serving HTTP on 0.0.0.0 port 8000 ...
+        </code>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <img class="chibi" src="img/me.png">
+        <code>http://mycomputer:8000</code>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        (handy for viewing and showing off<br>HTML/CSS/JS projects)
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter leftie">
+        <code>
+          $ cd my_project_directory<br>
+          $ python -m SimpleHTTPServer<br>
+        </code>
+        <code>
+          Serving HTTP on 0.0.0.0 port 8000 ...
+        </code>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter leftie">
+        <code>
+          Serving HTTP on <span class="highlight">0.0.0.0</span> port 8000 ...
+        </code>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter leftie">
+        <span class="smaller">
+        <code>
+          $ python manage.py runserver 8000<br>
+          Validating models...<br>
+          <br>
+          0 errors found<br>
+          March 07, 2014 - 23:37:49<br>
+          Django version 1.5.4, using settings 'myapp.settings'<br>
+          Development server is running at <span class="highlight">http://127.0.0.1</span>:8000/<br>
+          Quit the server with CONTROL-C.</span>
+        </code>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <img class="chibi" src="img/me.png">
+        <code>
+          $ python manage.py runserver <span class="highlight">0.0.0.0:8000</span>
+        </code>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <img class="chibi" src="img/you.png">
+        <code>http://mycomputer:8000</code>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        :)
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        Why did that work?
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h2>Ports and Interfaces</h2>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        Ports
+      </div>
+    </section>
+
+    <section class="slide">
+      <img src="img/ports.png">
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        Interfaces
+      </div>
+    </section>
+
+    <section class="slide">
+      <img src="img/interfaces.png">
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <code>
+        $ ifconfig
+      </code>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <code>
+        eth2 [...]<br>
+        lo [...]<br>
+        wlan1 [...]<br>
+      </code>
+      </div>
+    </section>
+
+    <section class="slide">
+      <img src="img/interfaces.png">
+    </section>
+
+    <section class="slide">
+      <img src="img/failure.png">
+    </section>
+
+    <section class="slide">
+      <img src="img/success.png">
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h2>Private IP addresses</h2>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        Only work inside a network
+      </div>
+    </section>
+
+    <section class="slide">
+      <img src="img/nat0.png">
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        Private IPv4 Blocks
+        <ul class="no-bullets">
+        <li class="slide">192.168.x.x</li>
+        <li class="slide">172.[16 through 31].x.x</li>
+        <li class="slide">10.x.x.x</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter leftie">
+        <code>
+        $ python -m SimpleHTTPServer<br>
+Serving HTTP on 0.0.0.0 port 8000 ...
+</code>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <code>
+        http://<span class="highlight">localhost</span>:8000
+      </code>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter leftie">
+        <code>
+        $ python -m SimpleHTTPServer<br>
+Serving HTTP on 0.0.0.0 port 8000 ...<br>
+<span class="highlight">127.0.0.1</span> - - [11/Mar/2014 12:49:47] "GET / HTTP/1.1" 200 -<br>
+127.0.0.1 - - [11/Mar/2014 12:49:47] code 404, message File not found<br>
+127.0.0.1 - - [11/Mar/2014 12:49:47] "GET /favicon.ico HTTP/1.1" 404 -
+</code>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <code>
+        http://<span class="highlight">mycomputer</span>:8000
+      </code>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter leftie">
+        <code>
+        <span class="highlight">172.27.0.14</span> - - [11/Mar/2014 12:51:33] "GET / HTTP/1.1" 200 -<br>
+        172.27.0.14 - - [11/Mar/2014 12:51:33] code 404, message File not found<br>
+        172.27.0.14 - - [11/Mar/2014 12:51:33] "GET /favicon.ico HTTP/1.1" 404 -
+        </code>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h2>Public IP addresses</h2>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        Every website you look at has (at least) one
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter leftie">
+        <code>
+        $ ping google.com<br>
+PING google.com (<span class="highlight">74.125.239.37</span>) 56(84) bytes of data.<br>
+^C<br>
+--- google.com ping statistics ---<br>
+4 packets transmitted, 4 received, 0% packet loss, time 3003ms<br>
+rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
+</code>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        http://74.125.239.37
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter"><img src="img/google.png"></div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        Your computer doesn't have one :(
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        How does my computer talk to the Internet if it isn't globally addressable?
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h2>Network Address Translation<br>(NAT)</h2>
+      </div>
+    </section>
+
+    <section class="slide">
+      <img src="img/nat0.png">
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        Need to keep track of whose traffic is whose
+      </div>
+    </section>
+
+    <section class="slide">
+      <img src="img/nat1.png">
+    </section>
+
+    <section class="slide">
+      <img src="img/nat2.png">
+    </section>
+
+    <section class="slide">
+      <img src="img/nat3.png">
+    </section>
+
+    <section class="slide">
+      <img src="img/nat4.png">
+    </section>
+
+    <section class="slide">
+      <img src="img/nat5.png">
+    </section>
+
+    <section class="slide">
+      <img src="img/nat6.png">
+    </section>
+
+    <section class="slide">
+      <img src="img/nat7.png">
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        NAT lets multiple devices connect over one public IP address :)
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        Gets in the way of sharing outside your network :(
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <img src="img/third.png" class="chibi">
+        How to share your work with others?
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h2>Come to PyCon 2014 and find out!</h2><br>
+        <small>(or ask Asheesh)</small>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h1>Thanks!</h1>
+        <h4>Karen Rustad &#8226; Asheesh Laroia</h4>
+        <h4>@whoisaldeka &#8226; @asheeshlaroia</h4>
+        <h4>aldeka@aldeka.net &#8226; asheesh@asheesh.org</h4>
+      </div>
+    </section>
+
+    <!-- End slides. -->
+
+    <!-- Begin extension snippets. Add or remove as needed. -->
+
+    <!-- deck.navigation snippet 
+    <div aria-role="navigation">
+      <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+      <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+    </div>
+
+    <!-- deck.status snippet 
+    <p class="deck-status" aria-role="status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.goto snippet 
+    <form action="." method="get" class="goto-form">
+      <label for="goto-slide">Go to slide:</label>
+      <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+      <datalist id="goto-datalist"></datalist>
+      <input type="submit" value="Go">
+    </form>
+
+    <!-- End extension snippets. -->
+  </div>
+
+<!-- Required JS files. -->
+<script src="jquery.min.js"></script>
+<script src="core/deck.core.js"></script>
+
+<!-- Extension JS files. Add or remove as needed. -->
+<script src="extensions/menu/deck.menu.js"></script>
+<script src="extensions/goto/deck.goto.js"></script>
+<script src="extensions/status/deck.status.js"></script>
+<!-- <script src="extensions/navigation/deck.navigation.js"></script> -->
+<script src="extensions/scale/deck.scale.js"></script>
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+  $(function() {
+    $.deck('.slide');
+  });
+</script>
+</body>
+</html>
