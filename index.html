@@ -43,16 +43,39 @@
     </section>
 
     <section class="slide">
-      <br>
-        <h2>Outline, part one</h2>
+        <h2>Outline, part one: Simple sharing</h2>
         <ul>
-          <li>A simple sharing scenario</li>
           <li>Python's SimpleHTTPServer</li>
           <li>Ports and interfaces</li>
-          <li>Private IP addresses</li>
-          <li>Public IP addresses</li>
-          <li>How NAT works</li>
+          <li>IP addresses and NAT</li>
+          <li>SSH [and other] tunneling</li>
+          <li>The beautiful dream of IPv6</li>
         </ul>
+    </section>
+
+    <section class="slide">
+        <h2>Outline, part two: Home servers</h2>
+        <ul>
+          <li>Why and how to run a home server</li>
+          <li>Bandwidth and other limits</li>
+          <li>Security issues</li>
+          <li>Follow-up resources and Q&A</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2>Takeaways</h2>
+        <ul>
+          <li class="slide">You can understand basic networking.</li>
+          <li class="slide">If your computer can access the Internet, you can run a server on it.</li>
+          <li class="slide">You can do it reasonably safely, too!</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h2>Scenario</h2>
+      </div>
     </section>
 
     <section class="slide">
@@ -275,7 +298,20 @@ Quit the server with CONTROL-C.</span></code>
 
     <section class="slide">
       <div class="vcenter">
-        <h2>Private IP addresses</h2>
+        <img src="img/third.png" class="chibi">
+        How to share your work with others?
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h2>IP addresses</h2>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h3>Private IP addresses</h3>
       </div>
     </section>
 
@@ -349,7 +385,7 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
 
     <section class="slide">
       <div class="vcenter">
-        <h2>Public IP addresses</h2>
+        <h3>Public IP addresses</h3>
       </div>
     </section>
 
@@ -374,6 +410,18 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
 
     <section class="slide">
       <div class="vcenter">
+        Domain Name System (DNS) lookups
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        (diagram of DNS lookup)
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
         http://74.125.239.37
       </div>
     </section>
@@ -384,7 +432,7 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
 
     <section class="slide">
       <div class="vcenter">
-        Your computer doesn't have one :(
+        Your computer (almost certainly) doesn't have a public IP address :(
       </div>
     </section>
 
@@ -446,6 +494,7 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
 
     <section class="slide">
       <div class="vcenter">
+        <img src="img/third.png" class="chibi">
         Gets in the way of sharing outside your network :(
       </div>
     </section>
@@ -453,7 +502,7 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
     <section class="slide">
       <div class="vcenter">
         <img src="img/third.png" class="chibi">
-        How to share your work with others?
+        How can we get around this?
       </div>
     </section>
 
@@ -465,12 +514,24 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
 
     <section class="slide">
       <div class="vcenter">
-        Remote port forwarding
+        Port forwarding
       </div>
     </section>
 
     <section class="slide">
-      Get access to a computer with a public IP address
+      <div class="vcenter">
+        (diagram of router port forwarding)
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        Remote port forwarding using SSH
+      </div>
+    </section>
+
+    <section class="slide">
+      <h3>Get access to a computer with a public IP address</h3>
       <ul>
         <li class="slide">University server account</li>
         <li class="slide">Linode</li>
@@ -501,7 +562,7 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
     <section class="slide">
       <div class="vcenter">
         <code>
-          $ ssh -g -R 9869:localhost:8000 rose.makesad.us
+          $ ssh -g -R 9999:localhost:8000 server.net
         </code>
       </div>
     </section>
@@ -509,7 +570,7 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
     <section class="slide">
       <div class="vcenter">
         <code>
-          $ ssh -g <span class="highlight">-R</span> 9869:localhost:8000 rose.makesad.us
+          $ ssh -g <span class="highlight">-R</span> 9999:localhost:8000 server.net
         </code>
       </div>
     </section>
@@ -517,7 +578,7 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
     <section class="slide">
       <div class="vcenter">
         <code>
-          $ ssh <span class="highlight">-g</span> -R 9869:localhost:8000 rose.makesad.us
+          $ ssh <span class="highlight">-g</span> -R 9999:localhost:8000 server.net
         </code>
       </div>
     </section>
@@ -525,7 +586,7 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
     <section class="slide">
       <div class="vcenter">
         <code>
-          $ ssh -g -R <span class="highlight">9869</span>:localhost:8000 rose.makesad.us
+          $ ssh -g -R <span class="highlight">9999</span>:localhost:8000 server.net
         </code>
       </div>
     </section>
@@ -533,7 +594,7 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
     <section class="slide">
       <div class="vcenter">
         <code>
-          $ ssh -g -R 9869:<span class="highlight">localhost:8000</span> rose.makesad.us
+          $ ssh -g -R 9999:<span class="highlight">localhost:8000</span> server.net
         </code>
       </div>
     </section>
@@ -541,20 +602,21 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
     <section class="slide">
       <div class="vcenter">
         <code>
-          $ ssh -g -R 9869:localhost:8000 <span class="highlight">rose.makesad.us</span>
+          $ ssh -g -R 9999:localhost:8000 <span class="highlight">server.net</span>
         </code>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <img src="img/third.png" class="chibi">
+        http://server.net:9999
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
         Tunneling is directional
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        "incoming gets filtered by your personal assistant aka router >:/" ????
       </div>
     </section>
 
@@ -572,7 +634,7 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
 
     <section class="slide">
       <div class="vcenter">
-        <h2>How to miss the point of Heroku, using pagekite</h2>
+        <h3>How to miss the point of Heroku, using pagekite</h3>
       </div>
     </section>
 
@@ -595,9 +657,11 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
     </section>
 
     <section class="slide">
-      <div class="vcenter leftie">
-        <strong>IPv4:</strong> 32 bits, looks like <code>74.125.239.37</code><br>
-        <strong>IPv6:</strong> 128 bits, looks like <code>2001:0db8:85a3:0042:1000:8a2e:0370:7334</code>
+      <div class="vcenter">
+        <strong>IPv4:</strong> 32 bits, looks like
+        <br><code>74.125.239.37</code><br><br>
+        <strong>IPv6:</strong> 128 bits, looks like 
+        <br><code>2001:0db8:85a3:0042:1000:8a2e:0370:7334</code>
       </div>
     </section>
 
@@ -621,7 +685,7 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
 
     <section class="slide">
       <div class="vcenter">
-        (miredo/6rd/????)
+        (miredo)
       </div>
     </section>
 
@@ -671,13 +735,7 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
 
     <section class="slide">
       <div class="vcenter">
-        <h2>Bandwidth</h2>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        Buffer bloat
+        <h3>Bandwidth</h3>
       </div>
     </section>
 
@@ -689,7 +747,13 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
 
     <section class="slide">
       <div class="vcenter">
-        Some router tweaks can partially mitigate this; ask Asheesh for more info
+        "Buffer bloat"
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        Some router tweaks can mitigate this; ask Asheesh for more info
       </div>
     </section>
 
@@ -701,13 +765,15 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
 
     <section class="slide">
       <div class="vcenter">
-        Your server can handle the load
+        Your server can (probably) handle the load
+        (benchmark)
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
         Your home router can't
+        (benchmark)
       </div>
     </section>
 
@@ -731,32 +797,93 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
 
     <section class="slide">
       <div class="vcenter">
-        <h2>ISP rules</h2>
+        <h3>ISP rules</h3>
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
-        <h2>Firewalls</h2>
+        <h3>Firewalls</h3>
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
-        Filter some ports prior to your router
+        Filter some ports prior to your router (e.g. port 25)
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
-        "packet filtering firewalls"
+        <h2>Risks of being a server</h2>
+      </div>
+    </section>
+
+    <section class="slide">
+        Things at risk when running an app on someone else's server
+        <ul>
+          <li class="slide">Disclosure or compromise of users' data</li>
+          <li class="slide">App could stop working properly</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        New things at risk with a home server
+        <ul>
+          <li class="slide">Anything on the computer running it
+          </li>
+          <li class="slide">Ability to appear to be inside your home network
+            <ul>
+              <li>Access to anything available locally (without other authentication)</li>
+            </ul>
+          </li>
+        </ul>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h3>Mitigating risks to your home server</h3>
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
-        <h2>Security risks</h2>
+        Isolate your server in a separate user account or machine
       </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        Network isolation ("DMZ")
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        Improve your app's security
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        Read the Open Web Application Security Project's Top 10 vulnerabilities list
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        (this is smart even if you host your app on e.g. Heroku)
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        "It'll probably be fine"
+      </div>
+    </section>
+
+    <section class="slide">
+      <h2>Further reading</h2>
     </section>
 
     <section class="slide">

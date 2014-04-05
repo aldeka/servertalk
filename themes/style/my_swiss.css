@@ -230,12 +230,14 @@ h1 {
 h2 {
   font-size: 1.35em;
   font-weight: bold;
+  margin-top: .5em;
 }
 
 h3 {
   font-size: 1.2em;
   font-weight: bold;
   margin-bottom: .30435em;
+  margin-top: .5em;
 }
 
 h4 {
