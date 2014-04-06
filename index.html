@@ -396,23 +396,8 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
     </section>
 
     <section class="slide">
-      <div class="vcenter leftie">
-        <code class="smaller">
-        $ host google.com<br>
-<div class="slide">google.com has address <span class="highlight">74.125.239.37</span></div>
-</code>
         <div class="notes">Can see public IP address via host command</div>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        Domain Name System (DNS) lookups
         <div class="notes">Normally don't enter IP address into browser bar, you enter a domain name. But your browser's still using public IP addresses to find the site you want.</div>
-      </div>
-    </section>
-
-    <section class="slide">
       <div class="vcenter">
         <img src="img/dns1.png">
         <div class="notes">Ask router first, has a cache of DNS records it's seen recently</div>
@@ -447,6 +432,15 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
         <div class="slide"><img src="img/google.png"></div>
         <div class="notes">So you don't have to type this... to get this.</div>
     </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter leftie">
+        <code class="smaller">
+        $ host google.com<br>
+<div class="slide">google.com has address <span class="highlight">74.125.239.37</span></div>
+</code>
+      </div>
     </section>
 
     <section class="slide">
@@ -644,9 +638,17 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
 
     <section class="slide">
       <div class="vcenter">
-        (vint cerf quote)
-        <br>
-        <div class="slide"><h2>The beautiful dream of IPv6</h2></div>
+	<p><strong>IP Address Shortage Spurs Black Market</strong></p>
+
+	<p>by Alyssa P. Hacker, MIT Voo Doo</p>
+
+	<p class="slide"><strong>Imagine an office filled with light fixtures on the network...</strong></p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+	<img src="http://store.storeimages.cdn-apple.com/3896/as-images.apple.com/is/image/AppleInc/HA779?wid=400&hei=400&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=1384907358689">
       </div>
     </section>
 
@@ -654,21 +656,30 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
       <div class="vcenter">
         <strong>IPv4:</strong> 32 bits, looks like
         <br><code>74.125.239.37</code><br><br>
-        <strong>IPv6:</strong> 128 bits, looks like 
-        <br><code>2001:0db8:85a3:0042:1000:8a2e:0370:7334</code>
+	<div class="slide">
+          <strong>IPv6:</strong> 128 bits, looks like
+          <br><code>2001:0db8:85a3:0042:1000:8a2e:0370:7334</code>
+	</div>
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
-        Adoption :(
-        (graph)
+	<ul>
+	  <li style="float: left;" class="slide">Jan 1, 2012: 0.25%</li>
+	  <li style="float: left;" class="slide">Jan 1, 2013: 1%</li>
+	  <li style="float: left;" class="slide">Jan 1, 2014: 2.5%</li>
+	</ul>
+	<p class="slide" style="position: absolute; z-index: -1; top: 0;">
+	  <img style="position: absolute; top: 0; z-index: -1;" src="http://rose.makesad.us/~paulproteus/google-v6-2014-04-05.png">
+	</p>
+
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
-        (miredo)
+        miredo & other IPv6 tunnels
       </div>
     </section>
 
@@ -712,13 +723,18 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
 
     <section class="slide">
       <div class="vcenter">
-        (demo)
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
         <h3>hello@pycon.no-ip.biz</h3>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h3><span class="pale">hello@pycon.</span>no-ip.biz</h3>
       </div>
     </section>
 
@@ -748,19 +764,10 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
 
     <section class="slide">
       <div class="vcenter">
-        <h3>Finding your public IP address</h3>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        Dyndns
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        (let's check our lamson demo)
+        <h3>what is my ip?</h3>
+	<p class="slide">
+	  <img src="http://rose.makesad.us/~paulproteus/google-what-ip.png">
+	</p>
       </div>
     </section>
 
@@ -786,59 +793,31 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
     </section>
 
     <section class="slide">
-      <div class="vcenter">
-        <h2>Risks of being a server</h2>
+      <div>
+        <h3>Risks</h3>
+        <li class="slide">App could break</li>
+	<li class="slide">App could leak users' private data</li>
       </div>
     </section>
 
     <section class="slide">
-        <h3>Things at risk when running an app on someone else's server</h3>
-        <ul>
-          <li class="slide">Disclosure or compromise of users' data</li>
-          <li class="slide">App could stop working properly</li>
-        </ul>
+      <div>
+        <h3>Risks</h3>
+        <li>App could break <strong>your account</strong></li>
+	<li>App could leak <strong>your</strong> private data</li>
+	<li class="slide">App could install keylogger</li>
+	<li class="slide">App could break into your network</li>
+      </div>
     </section>
 
     <section class="slide">
-        <h3>New things at risk with a home server</h3>
-        <ul>
-          <li class="slide">Anything on the computer running it
-          </li>
-          <li class="slide">Ability to appear to be inside your home network
-            <ul>
-              <li>Access to anything available locally (without other authentication)</li>
-            </ul>
-          </li>
-        </ul>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
+      <div>
         <h3>Mitigating risks to your home server</h3>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        Isolate your server in a separate user account or machine
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        Network isolation ("DMZ")
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        Improve your app's security
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        Open Web Application Security Project's <a href="https://www.owasp.org/index.php/Top_10_2013-Top_10">Top 10 vulnerabilities list</a>
+	<li class="slide">Separate user account</li>
+	<li class="slide">Separate machine</li>
+	<li class="slide">Separate network (DMZ)</li>
+	<li class="slide">Fix security issues</li>
+	<li class="slide">(OWASP Top 10)</li>
       </div>
     </section>
 
@@ -858,6 +837,15 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
     </section>
 
     <section class="slide">
+      <div class="vcenter">
+        <h1>Thanks!</h1>
+        <h4>Karen Rustad &#8226; Asheesh Laroia</h4>
+        <h4>@whoisaldeka &#8226; @asheeshlaroia</h4>
+        <h4>aldeka@aldeka.net &#8226; asheesh@asheesh.org</h4>
+      </div>
+    </section>
+
+    <section class="slide">
       <div class="vcenter leftie">
       <h3>Further reading</h3>
       <div style="font-size: .45em;">
@@ -866,7 +854,7 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
           <li><a href="http://serverfault.com/questions/78048/whats-the-difference-between-ip-address-0-0-0-0-and-127-0-0-1">More about 0.0.0.0</a></li>
           <li><a href="http://computer.howstuffworks.com/nat.htm">More about NAT</a></li>
           <li><a href="https://tools.ietf.org/html/rfc1918">More about private IP addresses</a></li>
-          <li><a href="http://lanyrd.com/2013/pycon/scdyrr/">How the Internet Works" by Jessica McKellar</a>, for more about DNS and IP</li>
+          <li><a href="http://lanyrd.com/2013/pycon/scdyrr/">"How the Internet Works" by Jessica McKellar</a>, for more about DNS and IP</li>
           <li><a href="http://portforward.com">Port forwarding details</a> for many home wifi routers</li>
           <li><a href="http://noip.com">noip.com</a>: a reasonable, free of cost for limited use, dynamic DNS service</li>
           <li>Two open source tunnel services:
@@ -892,15 +880,6 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
       </div>
     </div>
     </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        <h1>Thanks!</h1>
-        <h4>Karen Rustad &#8226; Asheesh Laroia</h4>
-        <h4>@whoisaldeka &#8226; @asheeshlaroia</h4>
-        <h4>aldeka@aldeka.net &#8226; asheesh@asheesh.org</h4>
-      </div>
     </section>
 
     <!-- End slides. -->
