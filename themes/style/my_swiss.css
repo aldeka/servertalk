@@ -424,3 +424,13 @@ a:hover, a:focus {
   color: #fcfcfc !important;
   background: #fcfcfc !important;
 }
+
+.column {
+  width: 20em;
+  float: left;
+}
+
+.another-column {
+  margin-left: 21em;
+  float: none;
+}
