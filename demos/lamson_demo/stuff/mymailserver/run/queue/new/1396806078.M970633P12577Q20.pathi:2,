@@ -1,0 +1,45 @@
+Content-Type: multipart/alternative;
+ boundary="===============4818888924154741670=="
+MIME-Version: 1.0
+Date: Sun, 6 Apr 2014 17:40:56 +0000
+Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113; 
+ h=mime-version:sender:from:date:message-id:subject:to:content-type; 
+ bh=NJkVFDyYdPiERQuHJ6LA7bnvivJmnsBLYeOQI9pH8sc=;
+ b=z+YcmOJLNY+x710DrioVihJiNj0cMCv187GuW6Nojr1DCBKq5V8THpEENQzSSLiEwf
+ QkwIIvsejTsVWgDQ9wgOCqFbB97/mRxK36HTZ3G8Pc9CewGTrdpJNCU6jEYotjBhox0X
+ M+lI05qXsJXpT+Esik8Ep/lXu2ALklw6aa4PJEoajfWrx968jy//in7tHe+2yGNF8wBh
+ UuQ8gEuOAg5CeHeks2kgOYz1qmv6C949ekmBrN2brp36fVGWqHSruZJ6M7TrEVUqp9Vf
+ 5eNwv9RFqYpbP0nOHtyg/sg5wLGbmymwZ2MV9HbCXEwN7Ki8rEKlvGCHsN2inkDAsZxV
+ dd/g==
+From: Karen Rustad <aldeka@aldeka.net>
+Message-Id: <CAA2W6bFr8bXtQBWQ+=7NUR0BjK4NaDRgCWiQnhaxbvWZCxXNAA@mail.gmail.com>
+Received: by mail-wg0-f41.google.com with SMTP id n12so5715157wgh.0
+ for <hello@pycon.duckdns.org>; Sun, 06 Apr 2014 10:41:16 -0700 (PDT)
+Sender: karen.rustad@gmail.com
+Subject: How to make our PyCon talk the best talk ever
+To: hello@pycon.duckdns.org
+X-Google-Sender-Auth: D3eECL5Wo409WWWMoE8CcHyOt1A
+X-Received: by 10.194.59.43 with SMTP id w11mr36768721wjq.65.1396806076202;
+ Sun, 06 Apr 2014 10:41:16 -0700 (PDT)
+
+--===============4818888924154741670==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+Well.
+
+Step one: make some slides.
+
+Step two: practice a lot.
+
+--===============4818888924154741670==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+
+PGRpdiBkaXI9Imx0ciI+V2VsbC7CoDxkaXY+PGJyPjwvZGl2PjxkaXY+U3RlcCBvbmU6IG1ha2Ug
+c29tZSBzbGlkZXMuPC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5TdGVwIHR3bzogcHJhY3RpY2Ug
+YSBsb3QuPC9kaXY+PC9kaXY+Cg==
+
+--===============4818888924154741670==--

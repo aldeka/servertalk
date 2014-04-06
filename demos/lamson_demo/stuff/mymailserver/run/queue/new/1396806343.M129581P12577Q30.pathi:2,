@@ -1,0 +1,39 @@
+Content-Type: multipart/alternative;
+ boundary="===============3841239012224231804=="
+MIME-Version: 1.0
+Date: Sun, 6 Apr 2014 17:45:20 +0000
+Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113; 
+ h=mime-version:sender:from:date:message-id:subject:to:content-type; 
+ bh=S3vj5aGqS3z1oW6rSiHNFUt1YXCMwOupjy6SCr6taIU=;
+ b=UzuoZcE+bUs+6UrXTYmyYvYNN68q1GNDNaAtRuN+RTBclmg6MkwEZL57WRAtLBgGA0
+ ufGgu0vP5xxHm0ETQnIMELxkE/4AEkv5oXu2MBb/L33n8+2+KjfNBeJ2LIfv1OZA136Q
+ MV03yPYSOcTINjKbyrLn8LJQOrH7Wb8/hbfMyuGKnnrzNGDroCh4om+vdxBPZEHidYGe
+ MOIpwiOMewu6la+x16FoHexwfFTu65dzAWcU+kga4i6H3dMDsYAHBHtITkHlTmXLEejD
+ GOgGzGaFb+wgxe6Y2d0F5dyqQB0/TxLSMEt1dWKhz9U+qlGwMKK9UtVJrb4otOgclEF6
+ PPng==
+From: Karen Rustad <aldeka@aldeka.net>
+Message-Id: <CAA2W6bGetpABboOy+Jt=Ra+pXd90AKgnw4q5OBByAU3tn8vuNg@mail.gmail.com>
+Received: by mail-wg0-f51.google.com with SMTP id k14so5847582wgh.10
+ for <hello@pycon.duckdns.org>; Sun, 06 Apr 2014 10:45:40 -0700 (PDT)
+Sender: karen.rustad@gmail.com
+Subject: So a Unicode character walks into a bar
+To: hello@pycon.duckdns.org
+X-Google-Sender-Auth: 1H5N-uxRJGSDHNotfz7xk9CvZho
+X-Received: by 10.180.94.196 with SMTP id de4mr20266053wib.16.1396806340675;
+ Sun, 06 Apr 2014 10:45:40 -0700 (PDT)
+
+--===============3841239012224231804==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+
+--===============3841239012224231804==
+Content-Type: text/html; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+<div dir="ltr"><br></div>
+
+--===============3841239012224231804==--
