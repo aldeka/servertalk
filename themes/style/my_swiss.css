@@ -409,7 +409,7 @@ a:hover, a:focus {
 }
 
 .pale {
-  color: #555;
+  color: #999;
 }
 
 .pale img {
@@ -418,4 +418,9 @@ a:hover, a:focus {
 
 .pale code {
   color: #7bd;
+}
+
+.goaway, .goaway .highlight {
+  color: #fcfcfc !important;
+  background: #fcfcfc !important;
 }

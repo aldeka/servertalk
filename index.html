@@ -248,40 +248,12 @@
 
     <section class="slide">
       <div class="vcenter">
-        Ports
+        <h2>Ports <span class="pale">and Interfaces</span></h2>
       </div>
     </section>
 
     <section class="slide">
       <img src="img/ports.png">
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        Interfaces
-      </div>
-    </section>
-
-    <section class="slide">
-      <img src="img/interfaces.png">
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        <code>
-        $ ifconfig
-      </code>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        <code>
-        eth2 [...]<br>
-        lo [...]<br>
-        wlan1 [...]<br>
-      </code>
-      </div>
     </section>
 
     <section class="slide">
@@ -316,17 +288,11 @@
     </section>
 
     <section class="slide">
-      <div class="vcenter">
-        Only work inside a network
-      </div>
-    </section>
-
-    <section class="slide">
       <img src="img/nat0.png">
     </section>
 
     <section class="slide">
-      <div class="vcenter">
+      <div class="vcenter leftie">
         Private IPv4 Blocks
         <ul class="no-bullets">
         <li class="slide">192.168.x.x</li>
@@ -338,48 +304,45 @@
 
     <section class="slide">
       <div class="vcenter leftie">
+        <code class="goaway">
+        http://<span class="highlight">mycomputer.local</span>:8000
+      </code><br><br>
         <code>
         $ python -m SimpleHTTPServer<br>
-Serving HTTP on 0.0.0.0 port 8000 ...
+<span class="goaway">Serving HTTP on 0.0.0.0 port 8000 ...<br>
+<span class="highlight">127.27.0.14</span> - - [11/Mar/2014 12:51:33] "GET / HTTP/1.1" 200 -</span>
 </code>
       </div>
     </section>
 
     <section class="slide">
-      <div class="vcenter">
+      <div class="vcenter leftie">
         <code>
         http://<span class="highlight">localhost</span>:8000
-      </code>
+      </code><br><br>
+        <code>
+        $ python -m SimpleHTTPServer<br>
+        <div class="slide">Serving HTTP on 0.0.0.0 port 8000 ...<br>
+<span class="highlight">127.0.0.1</span> - - [11/Mar/2014 12:49:47] "GET / HTTP/1.1" 200 -</div>
+</code>
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter leftie">
+        <code>
+        http://<span class="highlight">mycomputer.local</span>:8000
+      </code><br><br>
         <code>
         $ python -m SimpleHTTPServer<br>
 Serving HTTP on 0.0.0.0 port 8000 ...<br>
-<span class="highlight">127.0.0.1</span> - - [11/Mar/2014 12:49:47] "GET / HTTP/1.1" 200 -<br>
-127.0.0.1 - - [11/Mar/2014 12:49:47] code 404, message File not found<br>
-127.0.0.1 - - [11/Mar/2014 12:49:47] "GET /favicon.ico HTTP/1.1" 404 -
+<span class="highlight">127.27.0.14</span> - - [11/Mar/2014 12:51:33] "GET / HTTP/1.1" 200 -
 </code>
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
-        <code>
-        http://<span class="highlight">mycomputer</span>:8000
-      </code>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter leftie">
-        <code>
-        <span class="highlight">172.27.0.14</span> - - [11/Mar/2014 12:51:33] "GET / HTTP/1.1" 200 -<br>
-        172.27.0.14 - - [11/Mar/2014 12:51:33] code 404, message File not found<br>
-        172.27.0.14 - - [11/Mar/2014 12:51:33] "GET /favicon.ico HTTP/1.1" 404 -
-        </code>
       </div>
     </section>
 
@@ -390,20 +353,10 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
     </section>
 
     <section class="slide">
-      <div class="vcenter">
-        Every website you look at has (at least) one
-      </div>
-    </section>
-
-    <section class="slide">
       <div class="vcenter leftie">
-        <code>
-        $ ping google.com<br>
-PING google.com (<span class="highlight">74.125.239.37</span>) 56(84) bytes of data.<br>
-^C<br>
---- google.com ping statistics ---<br>
-4 packets transmitted, 4 received, 0% packet loss, time 3003ms<br>
-rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
+        <code class="smaller">
+        $ host google.com<br>
+<div class="slide">google.com has address <span class="highlight">74.125.239.37</span></div>
 </code>
       </div>
     </section>
@@ -440,23 +393,14 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
 
     <section class="slide">
       <div class="vcenter">
+        <br>
         http://74.125.239.37
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter"><img src="img/google.png"></div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        Your computer (almost certainly) doesn't have a public IP address :(
-      </div>
+        <div class="slide"><img src="img/google.png"></div>
+    </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
-        How does my computer talk to the Internet if it isn't globally addressable?
       </div>
     </section>
 
@@ -471,9 +415,7 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
     </section>
 
     <section class="slide">
-      <div class="vcenter">
-        Need to keep track of whose traffic is whose
-      </div>
+      (router highlight from nat0)
     </section>
 
     <section class="slide">
@@ -505,16 +447,11 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
     </section>
 
     <section class="slide">
-      <div class="vcenter">
-        NAT lets multiple devices connect over one public IP address :)
-      </div>
+      <img src="img/nat0.png">
     </section>
 
     <section class="slide">
-      <div class="vcenter">
-        <img src="img/third.png" class="chibi">
-        Gets in the way of sharing outside your network :(
-      </div>
+      <img src="img/nat0.png">
     </section>
 
     <section class="slide">
@@ -528,26 +465,6 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
       <div class="vcenter">
         <h2>SSH tunneling</h2>
       </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        Port forwarding
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        <img src="img/tomato.png">
-      </div>
-    </section>
-
-    <section class="slide">
-        <img src="img/routerforwarding1.png">
-    </section>
-
-    <section class="slide">
-        <img src="img/routerforwarding2.png">
     </section>
 
     <section class="slide">
@@ -581,7 +498,7 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
     <section class="slide">
       <div class="vcenter">
         <code>
-          $ ssh -g -R 9999:localhost:8000 server.net
+          $ ssh -g -R 9999:localhost:8000 myfriendsserver.net
         </code>
       </div>
     </section>
@@ -589,7 +506,7 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
     <section class="slide">
       <div class="vcenter">
         <code>
-          $ ssh -g <span class="highlight">-R</span> 9999:localhost:8000 server.net
+          $ ssh -g <span class="highlight">-R</span> 9999:localhost:8000 myfriendsserver.net
         </code>
       </div>
     </section>
@@ -597,7 +514,7 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
     <section class="slide">
       <div class="vcenter">
         <code>
-          $ ssh <span class="highlight">-g</span> -R 9999:localhost:8000 server.net
+          $ ssh <span class="highlight">-g</span> -R 9999:localhost:8000 myfriendsserver.net
         </code>
       </div>
     </section>
@@ -605,7 +522,7 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
     <section class="slide">
       <div class="vcenter">
         <code>
-          $ ssh -g -R <span class="highlight">9999</span>:localhost:8000 server.net
+          $ ssh -g -R <span class="highlight">9999</span>:localhost:8000 myfriendsserver.net
         </code>
       </div>
     </section>
@@ -613,7 +530,7 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
     <section class="slide">
       <div class="vcenter">
         <code>
-          $ ssh -g -R 9999:<span class="highlight">localhost:8000</span> server.net
+          $ ssh -g -R 9999:<span class="highlight">localhost:8000</span> myfriendsserver.net
         </code>
       </div>
     </section>
@@ -621,7 +538,7 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
     <section class="slide">
       <div class="vcenter">
         <code>
-          $ ssh -g -R 9999:localhost:8000 <span class="highlight">server.net</span>
+          $ ssh -g -R 9999:localhost:8000 <span class="highlight">myfriendsserver.net</span>
         </code>
       </div>
     </section>
@@ -629,31 +546,18 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
     <section class="slide">
       <div class="vcenter">
         <img src="img/third.png" class="chibi">
-        http://server.net:9999
+        http://myfriendsserver.net:9999
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
-        Tunneling is directional
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
-        But what if I have no money and no friends?
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        (and no ssh access)
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        <h3>(oh noes pagekite doesn't work on Heroku, what do we do now)</h3>
+        ngrok.com
       </div>
     </section>
 
@@ -665,13 +569,9 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
 
     <section class="slide">
       <div class="vcenter">
-        <h2>The beautiful dream of IPv6</h2>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        IP addresses
+        (vint cerf quote)
+        <br>
+        <div class="slide"><h2>The beautiful dream of IPv6</h2></div>
       </div>
     </section>
 
@@ -686,25 +586,25 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
 
     <section class="slide">
       <div class="vcenter">
-        No longer need NAT
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        A public address for every device, just like the olden days of the Internet!
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
         Adoption :(
+        (graph)
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
         (miredo)
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h2>Running an always-up<span class="goaway">**</span> server at home</h2>
       </div>
     </section>
 
@@ -719,19 +619,14 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
     </section>
 
     <section class="slide">
-      <div class="vcenter">
-        What is a home server good for?
-      </div>
-    </section>
-
-    <section class="slide">
+      <h3>What is a home server good for?</h3>
       <ul>
         <li class="slide">Email</li>
         <li class="slide">Your own web services, e.g.:
           <ul>
             <li class="slide">Etherpad for notes</li>
             <li class="slide">MediaGoblin for photos</li>
-            <li class="slide">Zeya for music</li>
+            <li class="slide">CherryMusic for music</li>
           </ul>
         </li>
         <li class="slide">Home automation!</li>
@@ -742,99 +637,72 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
 
     <section class="slide">
       <div class="vcenter">
-        (lamson demo)
+        (demo)
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
-        (asheesh writes some more slides here)
+        <h3>hello@pycon.no-ip.biz</h3>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        Home port forwarding
+      </div>
+    </section>
+
+    <section class="slide">
+        <img src="img/routerforwarding1.png">
+    </section>
+
+    <section class="slide">
+        <img src="img/routerforwarding2.png">
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <img src="img/tomato.png">
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h3>Finding your public IP address</h3>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        Dyndns
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        (let's check our lamson demo)
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
       </div>
     </section>
 
      <section class="slide">
-      <div class="vcenter">
         <h2>Knowing your limits</h2>
-      </div>
+        <ul>
+          <li class="slide">Bandwidth</li>
+          <li class="slide">"Buffer bloat"</li>
+          <li class="slide">Max connections</li>
+          <li class="slide">ISP rules</li>
+          <li class="slide">ISP firewalls</li>
+        </ul>
     </section>
 
     <section class="slide">
       <div class="vcenter">
-        <h3>Bandwidth</h3>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        Server usage will compete with your other internet use
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        "Buffer bloat"
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        Some router tweaks can mitigate this; ask Asheesh for more info
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        <h2>Max connections</h2>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        Your server can (probably) handle the load
-        (benchmark)
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        Your home router can't
-        (benchmark)
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        NAT table can fill up after 100-250 connections/min
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        :(
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        (this is why sometimes you have to reboot your router after your roommate uses Bittorrent)
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        <h3>ISP rules</h3>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        <h3>Firewalls</h3>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        Filter some ports prior to your router (e.g. port 25)
       </div>
     </section>
 
@@ -845,7 +713,7 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
     </section>
 
     <section class="slide">
-        Things at risk when running an app on someone else's server
+        <h3>Things at risk when running an app on someone else's server</h3>
         <ul>
           <li class="slide">Disclosure or compromise of users' data</li>
           <li class="slide">App could stop working properly</li>
@@ -853,7 +721,7 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
     </section>
 
     <section class="slide">
-        New things at risk with a home server
+        <h3>New things at risk with a home server</h3>
         <ul>
           <li class="slide">Anything on the computer running it
           </li>
@@ -892,12 +760,6 @@ rtt min/avg/max/mdev = 17.057/23.049/30.371/6.035 ms
     <section class="slide">
       <div class="vcenter">
         Read the Open Web Application Security Project's Top 10 vulnerabilities list
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="vcenter">
-        (this is smart even if you host your app on e.g. Heroku)
       </div>
     </section>
 
