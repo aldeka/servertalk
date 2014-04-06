@@ -191,7 +191,7 @@ h1 {
   max-height: 100%;
 }
 .csstransforms .vcenter {
-  padding: 0 80px;
+  padding: 0 60px;
   position: absolute;
   left: 0;
   right: 0;
@@ -406,4 +406,16 @@ a:hover, a:focus {
 }
 .deck-menu .deck-current, .no-touch .deck-menu .slide:hover {
   background: #ddf;
+}
+
+.pale {
+  color: #555;
+}
+
+.pale img {
+  opacity: .5;
+}
+
+.pale code {
+  color: #7bd;
 }
