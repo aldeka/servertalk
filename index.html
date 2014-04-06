@@ -7,7 +7,7 @@
 
   <title>Turn Your Computer Into a Server</title>
 
-  <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,700,400italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:300,400,700,400italic' rel='stylesheet' type='text/css'>
 
   <!-- Required stylesheet -->
   <link rel="stylesheet" media="screen" href="core/deck.core.css">
@@ -41,6 +41,7 @@
         <h1>Turn Your Computer Into a Server</h1>
         <h4>Karen Rustad &amp; Asheesh Laroia</h4>
         <h4>PyCon 2014 &#8226; Montréal, QC</h4>
+        <div class="notes">Karen starts with takeaways</div>
       </div>
     </section>
 
@@ -77,7 +78,6 @@
     <section class="slide">
       <div class="vcenter">
         <h2>Scenario</h2>
-<div class="notes">OK</div>
       </div>
     </section>
 
@@ -85,12 +85,14 @@
       <div class="vcenter">
         <img class="chibi" src="img/me.png">
         <h3>Building a web app</h3>
+        <div class="notes">Let's imagine you're building your first web application, in let's say Django.</div>
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
         <code>$ python manage.py runserver 8000</code>
+        <div class="notes">You run Django's built-in webserver...</div>
       </div>
     </section>
 
@@ -100,6 +102,7 @@
         <code>http://localhost:8000</code><br>
         <br>
         <img class="slide" src="img/itworks.png">
+        <div class="notes">And when you go to localhost:8000 in your browser, you see your Django app!</div>
       </div>
     </section>
 
@@ -109,6 +112,7 @@
         <code>http://localhost:8000</code>
         <br><br>
         <img class="slide" src="img/404.png">
+        <div class="notes">Send a link to your roommate. oh right, lol localhost.</div>
       </div>
     </section>
 
@@ -118,11 +122,13 @@
         <code>http://mycomputer.local:8000</code>
         <br><br>
         <img class="slide" src="img/404.png">
+        <div class="notes">try computer name dot local. Doesn't work.</div>
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
+        <div class="notes">Why didn't that work?</div>
       </div>
     </section>
 
@@ -146,6 +152,7 @@
         <img class="chibi" src="img/me.png">
         <code>http://mycomputer.local:8000</code>
         </div>
+        <div class="notes">Great for quick viewing and sharing of HTML/CSS/JS projects</div>
       </div>
     </section>
 
@@ -163,6 +170,7 @@
         <img class="chibi" src="img/me.png">
         <code>http://mycomputer.local:8000</code>
         </div>
+        <div class="notes">Huh. What's this 0.0.0.0 thing?</div>
       </div>
     </section>
 
@@ -185,6 +193,7 @@
           </code>
         </div>
         </span>
+        <div class="notes">Compare with django server log message</div>
       </div>
     </section>
 
@@ -207,6 +216,7 @@
           </code>
         </div>
         </span>
+        <div class="notes">No 0.0.0.0, whatever that is.</div>
       </div>
     </section>
 
@@ -229,6 +239,7 @@
           </code>
         </div>
         </span>
+        <div class="notes">Try prefixing port with 0.0.0.0 in server startup command</div>
       </div>
     </section>
 
@@ -238,43 +249,58 @@
         <code>http://mycomputer.local:8000</code>
         <br><br>
         <img class="slide" src="img/itworks.png">
+        <div class="notes">It works! But why did it work?</div>
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
         <h2>Ports and Interfaces</h2>
+        <div class="notes">To explain, need to talk about how ports and interfaces work in computer networking.</div>
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
         <h2>Ports <span class="pale">and Interfaces</span></h2>
+        <div class="notes">Maybe have heard of ports already</div>
       </div>
     </section>
 
     <section class="slide">
       <img src="img/ports0.png">
+      <div class="notes">Entryways into your computer, over 60000 of them</div>
     </section>
 
     <section class="slide">
       <img src="img/ports1.png">
+      <div class="notes">Applications bind</div>
     </section>
 
     <section class="slide">
       <img src="img/ports2.png">
+      <div class="notes">Can connect to them from outside</div>
     </section>
 
     <section class="slide">
       <img src="img/interfaces.png">
+      <div class="notes">Physical interfaces have each their own bank of ports -- wifi, ethernet, local loopback</div>
     </section>
 
     <section class="slide">
       <img src="img/failure.png">
+      <div class="notes">django server only bound to local loopback</div>
     </section>
 
     <section class="slide">
       <img src="img/success.png">
+      <div class="notes">binding to all allows access over wifi interface</div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <div class="notes">Can show off to roommate, others on same network</div>
+      </div>
     </section>
 
     <section class="slide">
@@ -287,12 +313,14 @@
     <section class="slide">
       <div class="vcenter">
         <h2>IP addresses</h2>
+        <div class="notes">To learn how, need to learn about how computers talk to each other across the internet: IP addresses. Two kinds of IP addresses</div>
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
         <h3>Private IP addresses</h3>
+        <div class="notes">Within a network</div>
       </div>
     </section>
 
@@ -308,6 +336,7 @@
         <li class="slide">172.[16 through 31].x.x</li>
         <li class="slide">10.x.x.x</li>
         </ul>
+        <div class="notes">Certain IP address blocks assigned</div>
       </div>
     </section>
 
@@ -321,6 +350,7 @@
 <span class="goaway">Serving HTTP on 0.0.0.0 port 8000 ...<br>
 <span class="highlight">127.27.0.14</span> - - [11/Mar/2014 12:51:33] "GET / HTTP/1.1" 200 -</span>
 </code>
+      <div class="notes">When you run simplehttpserver...</div>
       </div>
     </section>
 
@@ -334,6 +364,7 @@
         <div class="slide">Serving HTTP on 0.0.0.0 port 8000 ...<br>
 <span class="highlight">127.0.0.1</span> - - [11/Mar/2014 12:49:47] "GET / HTTP/1.1" 200 -</div>
 </code>
+      <div class="notes">...and view on localhost, see one private IP address in simplehttpserver logs. But if you view it on a different interface...</div>
       </div>
     </section>
 
@@ -347,17 +378,20 @@
 Serving HTTP on 0.0.0.0 port 8000 ...<br>
 <span class="highlight">127.27.0.14</span> - - [11/Mar/2014 12:51:33] "GET / HTTP/1.1" 200 -
 </code>
+      <div class="notes">...different private IP address!</div>
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
+        <div class="notes">addressing within a network</div>
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
         <h3>Public IP addresses</h3>
+        <div class="notes">public addresses work globally, across networks. every website you've ever used has at least one.</div>
       </div>
     </section>
 
@@ -367,36 +401,42 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
         $ host google.com<br>
 <div class="slide">google.com has address <span class="highlight">74.125.239.37</span></div>
 </code>
+        <div class="notes">Can see public IP address via host command</div>
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
         Domain Name System (DNS) lookups
+        <div class="notes">Normally don't enter IP address into browser bar, you enter a domain name. But your browser's still using public IP addresses to find the site you want.</div>
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
         <img src="img/dns1.png">
+        <div class="notes">Ask router first, has a cache of DNS records it's seen recently</div>
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
         <img src="img/dns2.png">
+        <div class="notes">If it doesn't know, router asks other DNS servers on the internet</div>
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
         <img src="img/dns3.png">
+        <div class="notes">Get back an IP address</div>
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
         <img src="img/dns4.png">
+        <div class="notes">which browser will then use to actually request the website you wanted</div>
       </div>
     </section>
 
@@ -405,62 +445,76 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
         <br>
         http://74.125.239.37
         <div class="slide"><img src="img/google.png"></div>
+        <div class="notes">So you don't have to type this... to get this.</div>
     </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
+        <div class="notes">Real websites have public IP addresses, but your computer almost certainly doesn't. So how does it connect to the internet?</div>
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
         <h2>Network Address Translation<br>(NAT)</h2>
+        <div class="notes">your router does this</div>
       </div>
     </section>
 
     <section class="slide">
       <img src="img/nat0.png">
+      <div class="notes">router stands between machines on your local network and the rest of the internet</div>
     </section>
 
     <section class="slide">
       <img src="img/nat-router.png">
+      <div class="notes">how does your router keep track of whose traffic is whose?</div>
     </section>
 
     <section class="slide">
       <img src="img/nat1.png">
+      <div class="notes">send a packet to a website somewhere. TCP connection, so a random unused port is part of the from address. (so you can connect to more than one website at a time!)</div>
     </section>
 
     <section class="slide">
       <img src="img/nat2.png">
+      <div class="notes">router takes packet, assigns your private IP addr (with port) a random unused port number, and records in NAT table</div>
     </section>
 
     <section class="slide">
       <img src="img/nat3.png">
+      <div class="notes">rewrites packet with router's public IP address and the port number it assigned you</div>
     </section>
 
     <section class="slide">
       <img src="img/nat4.png">
+      <div class="notes">...and sends it along</div>
     </section>
 
     <section class="slide">
       <img src="img/nat5.png">
+      <div class="notes">get response back from website, addressed to router's public IP address</div>
     </section>
 
     <section class="slide">
       <img src="img/nat6.png">
+      <div class="notes">look at nat table for where to send packet based on port number</div>
     </section>
 
     <section class="slide">
       <img src="img/nat7.png">
+      <div class="notes">find your private IP address, rewrite packet and send it back to you</div>
     </section>
 
     <section class="slide">
       <img src="img/nat0.png">
+      <div class="notes">good: multiple devices can share one public address</div>
     </section>
 
     <section class="slide">
       <img src="img/nat-sucks.png">
+      <div class="notes">bad: makes it hard for people outside your network to reach you</div>
     </section>
 
     <section class="slide">
@@ -479,6 +533,7 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
     <section class="slide">
       <div class="vcenter">
         Remote port forwarding using SSH
+        <div class="notes">SSH does lots of things, but this is what we're doing with it</div>
       </div>
     </section>
 
@@ -490,18 +545,22 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
         <li class="slide">Amazon EC2</li>
         <li class="slide">A friend with a server</li>
       </ul>
+      <div class="notes">step one</div>
     </section>
 
     <section class="slide">
         <img src="img/ssh1.png">
+        <div class="notes">connect to remote machine via ssh. this works just like any other internet connection, even w. NAT</div>
     </section>
 
     <section class="slide">
         <img src="img/ssh2.png">
+        <div class="notes">your laptop connects whatever port it uses for the TCP connection for the ssh session to your application/simplehttpserver/whatever port. remote machine connects port 22 traffic with a different available port.</div>
     </section>
 
     <section class="slide">
         <img src="img/ssh3.png">
+        <div class="notes">link people to the remote machine's IP address (or domain name, if it has one) on the chosen port.</div>
     </section>
 
     <section class="slide">
@@ -509,6 +568,7 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
         <code>
           $ ssh -g -R 9999:localhost:8000 myfriendsserver.net
         </code>
+        <div class="notes">the incantation that does all this</div>
       </div>
     </section>
 
@@ -517,6 +577,7 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
         <code>
           $ ssh -g <span class="highlight">-R</span> 9999:localhost:8000 myfriendsserver.net
         </code>
+        <div class="notes">means "do forwarding of traffic</div>
       </div>
     </section>
 
@@ -525,6 +586,7 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
         <code>
           $ ssh <span class="highlight">-g</span> -R 9999:localhost:8000 myfriendsserver.net
         </code>
+        <div class="notes">"gateway ports" -- use all interfaces, not just local loopback</div>
       </div>
     </section>
 
@@ -533,6 +595,7 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
         <code>
           $ ssh -g -R <span class="highlight">9999</span>:localhost:8000 myfriendsserver.net
         </code>
+        <div class="notes">the port where your stuff will be accessible on the remote machine</div>
       </div>
     </section>
 
@@ -541,6 +604,7 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
         <code>
           $ ssh -g -R 9999:<span class="highlight">localhost:8000</span> myfriendsserver.net
         </code>
+        <div class="notes">what interface/port you want to connect on your machine</div>
       </div>
     </section>
 
@@ -549,6 +613,7 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
         <code>
           $ ssh -g -R 9999:localhost:8000 <span class="highlight">myfriendsserver.net</span>
         </code>
+        <div class="notes">IP address or domain name for the remote machine</div>
       </div>
     </section>
 
@@ -556,6 +621,7 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
       <div class="vcenter">
         <img src="img/third.png" class="chibi">
         http://myfriendsserver.net:9999
+        <div class="notes">success!</div>
       </div>
     </section>
 
@@ -879,7 +945,7 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
         <style type="text/css">
             body.has-clones .deck-container {background: grey;}
             body div.notes { display: none; }
-            body.has-clones div.notes { color: green; display: block; }
+            body.has-clones div.notes { color: white; font-weight: 300; font-size: .9em;display: block; }
         </style>
 
 <!-- Initialize the deck. You can put this in an external file if desired. -->
