@@ -1,0 +1,39 @@
+Content-Type: multipart/alternative;
+ boundary="===============1076607753796149863=="
+MIME-Version: 1.0
+Date: Sun, 6 Apr 2014 17:45:02 +0000
+Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113; 
+ h=mime-version:sender:from:date:message-id:subject:to:content-type; 
+ bh=YmF4diZr9k9vtHwiPGLksfL6y0fBe+nhfwAkTDRX/eU=;
+ b=FiNHH9ooG3cj7yxPeDPoUy83yX53FvRpaYKs/6qg1HHNgtze1cdTXG+lhqJB/PjqAZ
+ obQ0a8dLMk3af2hC/CG4Rm7yNoCDGKaXb+zlP+K7TlSaEvGRHlBFphAbaVJG+2Cn4vbH
+ O5t7yquou8fczBRQ2KbAs3d2qja8DvsAXtuuIuJNG1MEqXzIVGgsTVo6lqYHrYZMMkdl
+ xV/K2HylFYYmxPUsQ+16wlsVXSwH/GAbpgm2r7xN2ESQ9gA7QTRfm2bkizkvIZs49wn5
+ fwgdi/pAou2mXEC3JBjXSUN3sJwO1vzObzVHV6f/krKZqUlMsmi19fYM4MGnitKeX/Jj
+ mhyQ==
+From: Karen Rustad <karen@ischool.berkeley.edu>
+Message-Id: <CAA2W6bHjR2k7-yWM_NAPiZTadjf6+jSJy2Nt6xcK+MsG2SM25A@mail.gmail.com>
+Received: by mail-wg0-f45.google.com with SMTP id l18so5738239wgh.28
+ for <hello@pycon.duckdns.org>; Sun, 06 Apr 2014 10:45:22 -0700 (PDT)
+Sender: karen.rustad@gmail.com
+Subject: Another question, sorry!
+To: hello@pycon.duckdns.org
+X-Google-Sender-Auth: NKxPQ62F8tDVI6SExnpoA-xpWkw
+X-Received: by 10.194.191.195 with SMTP id ha3mr35957268wjc.69.1396806322531; 
+ Sun, 06 Apr 2014 10:45:22 -0700 (PDT)
+
+--===============1076607753796149863==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+fahilsghpwgw2[oqtpqofoiha;k?Wnvslkdf
+
+--===============1076607753796149863==
+Content-Type: text/html; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+<div dir="ltr">fahilsghpwgw2[oqtpqofoiha;k?Wnvslkdf</div>
+
+--===============1076607753796149863==--

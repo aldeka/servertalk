@@ -1,0 +1,39 @@
+Content-Type: multipart/alternative;
+ boundary="===============8115072381031430295=="
+MIME-Version: 1.0
+Date: Sun, 6 Apr 2014 17:35:10 +0000
+Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113; 
+ h=mime-version:from:date:message-id:subject:to:content-type;
+ bh=sPDwaF4ILFR5vi1rCl0keVV/tLkUORxuKPz7PWgD1Mg=;
+ b=lkfaVQxFNQ2t+pDjuGXShwE8FmEsPESBAT/jDcdgvkuoCidibFcWKeg4dbgYh0kQhN
+ a/yZTMA0LFqCzGHSzeKb9rSHuCzTWbufy4aQK77WCPKJrV3NagGIqFzf6Axlr85qpo23
+ N5rCufpdphG7jcR89O14HKYYDN2sTBFWwTfdyYRCN3GUMol9lQjur0YteXML8kMGAe32
+ 5l9kWFQTfaHh+7STZXsYAyNj7tpx1vsTxOJekyOc0fumdcV1kmNibY35+PzqDaCbew+n
+ sJ1e3JR3VkqyQQ0ZqOk+UA3HeJPWd+k0QYNhkPijv1yzWvsKN4T/1vjdALzu5NK2V5a+
+ ZouQ==
+From: Karen Rustad <karen.rustad@gmail.com>
+Message-Id: <CAA2W6bFrjq222vT3_ai2YDCO_yxXV6kpXLRnNuh-_FoJ+oDUkg@mail.gmail.com>
+Received: by mail-wg0-f44.google.com with SMTP id m15so5736572wgh.15
+ for <hello@pycon.duckdns.org>; Sun, 06 Apr 2014 10:35:30 -0700 (PDT)
+Subject: Hello again
+To: hello@pycon.duckdns.org
+X-Received: by 10.194.191.195 with SMTP id ha3mr35907650wjc.69.1396805730757; 
+ Sun, 06 Apr 2014 10:35:30 -0700 (PDT)
+
+--===============8115072381031430295==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+I hope you're doing well. Rhubarb rhubarb blah blah blah.
+
+-- Karen
+
+--===============8115072381031430295==
+Content-Type: text/html; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+<div dir="ltr">I hope you&#39;re doing well. Rhubarb rhubarb blah blah blah.<div><br></div><div>-- Karen</div></div>
+
+--===============8115072381031430295==--

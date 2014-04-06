@@ -1,0 +1,37 @@
+Content-Type: multipart/alternative;
+ boundary="===============6217698157142746640=="
+MIME-Version: 1.0
+Date: Sun, 6 Apr 2014 17:44:45 +0000
+Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113; 
+ h=mime-version:from:date:message-id:subject:to:content-type;
+ bh=ovYdC+ITKb6pAu08145C9Z3AFMQJYS/YzXP5Bp9jDH0=;
+ b=FfLc+tt+hJ7cGCby0tAuLn0iW5JM6khfJycED02C1d21sQLuZp8P/uKYfYY76wQTuN
+ wFtRsKneZLBeZp6fT/gpS4gmz1TLrXj+MQCVwLZcRobqwU/Jq419T6sfjuyy43lsErpL
+ 6JlbLK2jEGlH0h6xRXSg5rEb4GsyrvzgsXX++aE2ntKugpeMnALmX92QxWLn5lAbDj16
+ ubgWrcWARlbsJo6OHstQ9ruc8g01hJDIR/VrYaf7vg8ouSbGMJMlfPy1qjukKwO1JLwP
+ QgjPYRiWxr5IyVATNkRLHfbXR/8LPqyRHkrq3IgiGYZu9BIbqFU/RhMgmARcAVGKff9H
+ haJg==
+From: Karen Rustad <karen.rustad@gmail.com>
+Message-Id: <CAA2W6bF61oZq2Pc5fX1DiPmZtWwmQXA1qTHFwYapaQOqdFtHJw@mail.gmail.com>
+Received: by mail-wi0-f172.google.com with SMTP id hi2so3869385wib.17
+ for <hello@pycon.duckdns.org>; Sun, 06 Apr 2014 10:45:05 -0700 (PDT)
+Subject: Where in the world is Carmen Sandiego?
+To: hello@pycon.duckdns.org
+X-Received: by 10.194.174.100 with SMTP id br4mr4650711wjc.83.1396806305343;
+ Sun, 06 Apr 2014 10:45:05 -0700 (PDT)
+
+--===============6217698157142746640==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+The best show ever.
+
+--===============6217698157142746640==
+Content-Type: text/html; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+<div dir="ltr">The best show ever.</div>
+
+--===============6217698157142746640==--
