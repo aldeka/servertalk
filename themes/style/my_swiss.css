@@ -14,6 +14,7 @@ time, mark, audio, video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  font-family: "Merriweather Sans", "Helvetica Neue", sans-serif;
 }
 
 article, aside, details, figcaption, figure,
@@ -369,7 +370,7 @@ a:hover, a:focus {
 .deck-container {
   font-family: "Merriweather Sans", "Helvetica Neue", sans-serif;
   font-size: 32pt;
-  background: #fcfcfc;
+  background: #fff;
 }
 .deck-container > .slide {
   padding: 0 48px;
@@ -421,8 +422,8 @@ a:hover, a:focus {
 }
 
 .goaway, .goaway .highlight {
-  color: #fcfcfc !important;
-  background: #fcfcfc !important;
+  color: #fff !important;
+  background: #fff !important;
 }
 
 .column {
