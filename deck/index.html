@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=1024, user-scalable=no">
+
+  <title>Turn Your Computer Into a Server</title>
+
+  <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+  <!-- Required stylesheet -->
+  <link rel="stylesheet" media="screen" href="core/deck.core.css">
+
+  <!-- Extension CSS files go here. Remove or add as needed. -->
+  <link rel="stylesheet" media="screen" href="extensions/goto/deck.goto.css">
+  <link rel="stylesheet" media="screen" href="extensions/menu/deck.menu.css">
+  <!--   <link rel="stylesheet" media="screen" href="extensions/navigation/deck.navigation.css"> -->
+  <link rel="stylesheet" media="screen" href="extensions/status/deck.status.css">
+  <link rel="stylesheet" media="screen" href="extensions/scale/deck.scale.css">
+
+  <!-- Style theme. More available in /themes/style/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="themes/style/my_swiss.css">
+
+  <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="themes/transition/horizontal-slide.css">
+
+  <!-- Basic black and white print styles -->
+  <link rel="stylesheet" media="print" href="core/print.css">
+
+  <!-- Required Modernizr file -->
+  <script src="modernizr.custom.js"></script>
+</head>
+<body>
+  <div class="deck-container">
+
+    <!-- Begin slides. Just make elements with a class of slide. -->
+
+    <section class="slide">
+      <div class="vcenter">
+        <h1>Turn Your Computer Into a Server</h1>
+        <h4>Karen Rustad &amp; Asheesh Laroia</h4>
+        <h4>PyCon 2014 &#8226; Montréal, QC</h4>
+        <div class="notes">Introduce selves w. names and jobs; Karen starts with takeaways</div>
+      </div>
+    </section>
+
+    <section class="slide">
+        <h2>Takeaways</h2>
+        <ul>
+          <li class="slide">You can understand basic networking.</li>
+          <li class="slide">If you're online, you can run a server.</li>
+          <li class="slide">You can do it reasonably safely, too!</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2>Outline, part one: Simple sharing</h2>
+        <ul>
+          <li>Python's SimpleHTTPServer</li>
+          <li>Ports and interfaces</li>
+          <li>IP addresses and NAT</li>
+          <li>SSH [and other] tunneling</li>
+          <li>The beautiful dream of IPv6</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2>Outline, part two: Home servers</h2>
+        <ul>
+          <li>Why and how to run a home server</li>
+          <li>Bandwidth and other limits</li>
+          <li>Security issues</li>
+          <li>Follow-up resources and Q&A</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h2>Scenario</h2>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <img class="chibi" src="img/me.png">
+        <h3>Building a web app</h3>
+        <div class="notes">Let's imagine you're building your first web application, in let's say Django.</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <code>$ python manage.py runserver 8000</code>
+        <div class="notes">You run Django's built-in webserver...</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <img class="chibi" src="img/me.png">
+        <code>http://localhost:8000</code><br>
+        <br>
+        <img class="slide" src="img/itworks.png">
+        <div class="notes">And when you go to localhost:8000 in your browser, you see your Django app!</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <img class="chibi" src="img/you.png">
+        <code>http://localhost:8000</code>
+        <br><br>
+        <img class="slide" src="img/404.png">
+        <div class="notes">Send a link to your roommate. oh right, lol localhost.</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <img class="chibi" src="img/you.png">
+        <code>http://mycomputer.local:8000</code>
+        <br><br>
+        <img class="slide" src="img/404.png">
+        <div class="notes">try computer name dot local. Doesn't work.</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <div class="notes">Why didn't that work?</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h2>Basic local sharing</h2>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter leftie">
+        <code>
+          $ cd my_project_directory<br>
+          $ python -m SimpleHTTPServer<br>
+        </code>
+        <code>
+          Serving HTTP on 0.0.0.0 port 8000
+        </code>
+        <br><br>
+        <div class="slide">
+        <img class="chibi" src="img/me.png">
+        <code><center>http://mycomputer.local:8000</center></code>
+        </div>
+        <div class="notes">Great for quick viewing and sharing of HTML/CSS/JS projects. Works even at mycomputer.local. Why?</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter leftie pale">
+        <code>
+          $ cd my_project_directory<br>
+          $ python -m SimpleHTTPServer<br>
+        </code>
+        <code>
+          Serving HTTP on <span class="highlight">0.0.0.0</span> port 8000
+        </code>
+        <br><br>
+        <div class="">
+        <img class="chibi" src="img/me.png">
+        <code><center>http://mycomputer.local:8000</center></code>
+        </div>
+        <div class="notes">Huh. What's this 0.0.0.0 thing?</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter leftie">
+        <span class="smaller">
+        <code>
+          $ python manage.py runserver 8000<br>
+        </code>
+        <br>
+        <div class="slide">
+          <code>
+            Validating models...<br>
+            <br>
+            0 errors found<br>
+            March 07, 2014 - 23:37:49<br>
+            Django version 1.5.4, using settings 'myapp.settings'<br>
+            Development server is running at http://127.0.0.1:8000/<br>
+            Quit the server with CONTROL-C.
+          </code>
+        </div>
+        </span>
+        <div class="notes">Compare with django server log message</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter leftie pale">
+        <span class="smaller">
+        <code>
+          $ python manage.py runserver 8000<br>
+        </code>
+        <br>
+        <div class="">
+          <code>
+            Validating models...<br>
+            <br>
+            0 errors found<br>
+            March 07, 2014 - 23:37:49<br>
+            Django version 1.5.4, using settings 'myapp.settings'<br>
+            Development server is running at http://<span class="highlight">127.0.0.1</span>:8000/<br>
+            Quit the server with CONTROL-C.
+          </code>
+        </div>
+        </span>
+        <div class="notes">No 0.0.0.0, whatever that is.</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter leftie">
+        <span class="smaller">
+        <code>
+          $ python manage.py runserver <span class="highlight">0.0.0.0:8000</span><br>
+        </code>
+        <br>
+        <div class="">
+          <code>
+            Validating models...<br>
+            <br>
+            0 errors found<br>
+            March 07, 2014 - 23:37:49<br>
+            Django version 1.5.4, using settings 'myapp.settings'<br>
+            Development server is running at http://<span class="highlight">0.0.0.0:8000</span>/<br>
+            Quit the server with CONTROL-C.
+          </code>
+        </div>
+        </span>
+        <div class="notes">Try prefixing port with 0.0.0.0 in server startup command</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <img class="chibi" src="img/you.png">
+        <code>http://mycomputer.local:8000</code>
+        <br><br>
+        <img class="slide" src="img/itworks.png">
+        <div class="notes">It works! But why did it work?</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h2>Ports and Interfaces</h2>
+        <div class="notes">To explain, need to talk about how ports and interfaces work in computer networking.</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h2>Ports <span class="pale">and Interfaces</span></h2>
+        <div class="notes">Maybe have heard of ports already</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <img src="img/ports0.png">
+      <div class="notes">Entryways into your computer, over 60000 of them</div>
+    </section>
+
+    <section class="slide">
+      <img src="img/ports1.png">
+      <div class="notes">Applications bind</div>
+    </section>
+
+    <section class="slide">
+      <img src="img/ports2.png">
+      <div class="notes">Can connect to them from outside</div>
+    </section>
+
+    <section class="slide">
+      <img src="img/interfaces.png">
+      <div class="notes">Physical interfaces have each their own bank of ports -- wifi, ethernet, local loopback</div>
+    </section>
+
+    <section class="slide">
+      <img src="img/failure.png">
+      <div class="notes">django server only bound to local loopback</div>
+    </section>
+
+    <section class="slide">
+      <img src="img/success.png">
+      <div class="notes">binding to all allows access over wifi interface</div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <div class="notes">Can show off to roommate, others on same network</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <img src="img/third.png" class="chibi">
+        How to share your work with others?
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h2>IP addresses</h2>
+        <div class="notes">To learn how, need to learn about how computers talk to each other across the internet: IP addresses. Two kinds of IP addresses</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h3>Private IP addresses</h3>
+        <div class="notes">Within a network</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <img src="img/nat0.png">
+    </section>
+
+    <section class="slide">
+      <div class="vcenter leftie">
+        Private IPv4 Blocks
+        <ul class="no-bullets">
+        <li class="slide">192.168.x.x</li>
+        <li class="slide">172.[16 through 31].x.x</li>
+        <li class="slide">10.x.x.x</li>
+        </ul>
+        <div class="notes">Certain IP address blocks assigned</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter leftie">
+        <code class="goaway">
+        http://<span class="highlight">mycomputer.local</span>:8000
+      </code><br><br>
+        <code>
+        $ python -m SimpleHTTPServer<br>
+<span class="goaway">Serving HTTP on 0.0.0.0 port 8000 ...<br>
+<span class="highlight">172.27.0.14</span> - - [11/Mar/2014 12:51:33] "GET / HTTP/1.1" 200 -</span>
+</code>
+      <div class="notes">When you run simplehttpserver...</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter leftie">
+        <code>
+        http://<span class="highlight">localhost</span>:8000
+      </code><br><br>
+        <code>
+        $ python -m SimpleHTTPServer<br>
+        <div class="slide">Serving HTTP on 0.0.0.0 port 8000 ...<br>
+<span class="highlight">127.0.0.1</span> - - [11/Mar/2014 12:49:47] "GET / HTTP/1.1" 200 -</div>
+</code>
+      <div class="notes">...and view on localhost, see one private IP address in simplehttpserver logs. But if you view it on a different interface...</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter leftie">
+        <code>
+        http://<span class="highlight">mycomputer.local</span>:8000
+      </code><br><br>
+        <code>
+        $ python -m SimpleHTTPServer<br>
+Serving HTTP on 0.0.0.0 port 8000 ...<br>
+<span class="highlight">172.27.0.14</span> - - [11/Mar/2014 12:51:33] "GET / HTTP/1.1" 200 -
+</code>
+      <div class="notes">...different private IP address!</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <div class="notes">Asheesh steps up. (1) i want to talk about public svcs (2) karen talked about private (3) those wouldn't work for global </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h3>Public IP addresses</h3>
+        <div class="notes">public can be reached from anywhere on Internet. routing done by IP. Your browser auto looks up in DNS. Show via cartoons.</div>
+      </div>
+    </section>
+
+    <section class="slide">
+
+        <img src="img/dns1.png">
+        <div class="notes">Ask router first, has a cache of DNS records it's seen recently</div>
+      <div class="notes">
+	Sends a DNS query automatically. Router checks cache & internal. Else broader.
+      </div>
+    </section>
+
+    <section class="slide">
+        <img src="img/dns2.png">
+        <div class="notes">passing looks like this. One server might be google's; one might be ISP's.</div>
+    </section>
+
+    <section class="slide">
+        <img src="img/dns3.png">
+        <div class="notes">(pause) they find answer, looks like this. router gets that and...</div>
+    </section>
+
+    <section class="slide">
+        <img src="img/dns4.png">
+        <div class="notes">fwds that to you, so you can make the request; I'll fmt into URL</div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <br>
+        http://74.125.239.37
+        <div class="notes">You could visit this in a browser; usually wouldn't yourself; no surprise but yay!</div>
+        <div class="slide"><img src="img/google.png"></div>
+        <div class="notes">If you want you can ask</div>
+    </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter leftie">
+        <code class="smaller">
+        $ host google.com<br>
+<div class="slide">google.com has address <span class="highlight">74.125.239.37</span></div>
+</code>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <div class="notes">Transition back to Karen: Real websites have public IP addresses, but your computer almost certainly doesn't. So how does it connect to the internet?</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h2>Network Address Translation<br>(NAT)</h2>
+        <div class="notes">your router does this</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <img src="img/nat0.png">
+      <div class="notes">router stands between machines on your local network and the rest of the internet</div>
+    </section>
+
+    <section class="slide">
+      <img src="img/nat-router.png">
+      <div class="notes">how does your router keep track of whose traffic is whose?</div>
+    </section>
+
+    <section class="slide">
+      <img src="img/nat1.png">
+      <div class="notes">send a packet to a website somewhere. TCP connection, so a random unused port is part of the from address. (so you can connect to more than one website at a time!)</div>
+    </section>
+
+    <section class="slide">
+      <img src="img/nat2.png">
+      <div class="notes">router takes packet, assigns your private IP addr (with port) a random unused port number, and records in NAT table</div>
+    </section>
+
+    <section class="slide">
+      <img src="img/nat3.png">
+      <div class="notes">rewrites packet with router's public IP address and the port number it assigned you</div>
+    </section>
+
+    <section class="slide">
+      <img src="img/nat4.png">
+      <div class="notes">...and sends it along</div>
+    </section>
+
+    <section class="slide">
+      <img src="img/nat5.png">
+      <div class="notes">get response back from website, addressed to router's public IP address</div>
+    </section>
+
+    <section class="slide">
+      <img src="img/nat6.png">
+      <div class="notes">look at nat table for where to send packet based on port number</div>
+    </section>
+
+    <section class="slide">
+      <img src="img/nat7.png">
+      <div class="notes">find your private IP address, rewrite packet and send it back to you</div>
+    </section>
+
+    <section class="slide">
+      <img src="img/nat0.png">
+      <div class="notes">good: multiple devices can share one public address</div>
+    </section>
+
+    <section class="slide">
+      <img src="img/nat-sucks.png">
+      <div class="notes">bad: makes it hard for people outside your network to reach you</div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <img src="img/third.png" class="chibi">
+        How can we get around this?
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h2>SSH tunneling</h2>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        Remote port forwarding using SSH
+        <div class="notes">SSH does lots of things, but this is what we're doing with it</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <h3>Get access to a computer with a public IP address</h3>
+      <ul>
+        <li class="slide">University server account</li>
+        <li class="slide">Linode</li>
+        <li class="slide">Amazon EC2</li>
+        <li class="slide">A friend with a server</li>
+      </ul>
+      <div class="notes">step one</div>
+    </section>
+
+    <section class="slide">
+        <img src="img/ssh1.png">
+        <div class="notes">connect to remote machine via ssh. this works just like any other internet connection, even w. NAT</div>
+    </section>
+
+    <section class="slide">
+        <img src="img/ssh2.png">
+        <div class="notes">your laptop connects whatever port it uses for the TCP connection for the ssh session to your application/simplehttpserver/whatever port. remote machine connects port 22 traffic with a different available port.</div>
+    </section>
+
+    <section class="slide">
+        <img src="img/ssh3.png">
+        <div class="notes">link people to the remote machine's IP address (or domain name, if it has one) on the chosen port.</div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <code>
+          $ ssh -g -R 9999:localhost:8000 myfriendsserver.net
+        </code>
+        <div class="notes">the incantation that does all this</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <code>
+          $ ssh -g <span class="highlight">-R</span> 9999:localhost:8000 myfriendsserver.net
+        </code>
+        <div class="notes">means "do forwarding of traffic"</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <code>
+          $ ssh <span class="highlight">-g</span> -R 9999:localhost:8000 myfriendsserver.net
+        </code>
+        <div class="notes">"gateway ports" -- use all interfaces, not just local loopback</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <code>
+          $ ssh -g -R <span class="highlight">9999</span>:localhost:8000 myfriendsserver.net
+        </code>
+        <div class="notes">the port where your stuff will be accessible on the remote machine</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <code>
+          $ ssh -g -R 9999:<span class="highlight">localhost:8000</span> myfriendsserver.net
+        </code>
+        <div class="notes">what interface/port you want to connect on your machine</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <code>
+          $ ssh -g -R 9999:localhost:8000 <span class="highlight">myfriendsserver.net</span>
+        </code>
+        <div class="notes">IP address or domain name for the remote machine</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <img src="img/third.png" class="chibi">
+        http://myfriendsserver.net:9999
+        <div class="notes">success! all you need is money to pay for a remote server, or a friend who's willing to give you ssh access.</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <div class="notes">if you have no friends, money, or SSH access, life can be ok</div>
+        <div class="notes">free online svcs</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        ngrok & pagekite
+      </div>
+      <div class="notes">mission help you debug your applications</div>
+      <div class="notes">both are open source, let you borrow subdomain, connect to it w/ client</div>
+      <div class="notes">client works like SSH port forward</div>
+
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <div class="notes">Pre-demo: don't take my word for it</div>
+        <a target="_blank" href="http://pycon.ngrok.com/">http://pycon.ngrok.com/</a>
+        <div class="notes">Thx. Nate Aune, Shimon Rura, Tony Abu-Assaleh</div>
+        <div class="notes">Post-demo: relies on borrowing ports; how the internet was supposed to work</div>
+        <div class="notes">90s warned ip shortage</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+	<p><strong>IP Address Shortage Spurs Black Market</strong></p>
+
+	<p>by Alyssa P. Hacker, MIT Voo Doo</p>
+
+        <div class="notes">Fake news, fake person, fake MIT mag. '90s. Hilarious. Next: light fixtures</div>
+	<p class="slide"><strong>Imagine an office filled with light fixtures on the network...</strong></p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+	<img src="http://store.storeimages.cdn-apple.com/3896/as-images.apple.com/is/image/AppleInc/HA779?wid=400&hei=400&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=1384907358689">
+      </div>
+      <div class="notes">Philips Hue. Q. Can we give them addr?</div>
+      <div class="notes">next slide == IPv4 length; 6 billion phones. we'd run out</div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <strong>IPv4:</strong> 32 bits, looks like
+        <br><code>74.125.239.37</code><br><br>
+	<div class="notes">luckily in 90s invented v6</div>
+	<div class="slide">
+          <strong>IPv6:</strong> 128 bits, looks like
+          <br><code>2001:0db8:85a3:0042:1000:8a2e:0370:7334</code>
+	</div>
+	<div class="notes">talk about next gen transition; next: blank</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div>
+	<div class="notes">while blank, fourteen years after v6, here are percent of hits to google's websites over v6</div>
+	<div class="notes">purpose is: basically all addresses are public</div>
+	<ul>
+	  <li style="float: left;" class="slide">Jan 1, 2012: 0.25%</li>
+	  <li style="float: left;" class="slide">Jan 1, 2013: 1%</li>
+	  <li style="float: left;" class="slide">Jan 1, 2014: 2.5%</li>
+	</ul>
+	<img class="slide" style="z-index: -1; position: absolute;" src="http://rose.makesad.us/~paulproteus/google-v6-2014-04-05.png">
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        miredo & other IPv6 tunnels
+      </div>
+      <div class="notes">
+	work within NAT, yay
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <div class="notes">Karen talks; on to part two!</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h2>Running an always-up<span class="goaway">**</span> server at home</h2>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h2>Running an always-up** server at home</h2>
+        <div class="notes">sysadminning is sometimes fun and exciting</div>
+      </div>
+    </section>
+
+    <section class="slide">
+        <img src="img/downtimeabbey.png">
+    </section>
+
+    <section class="slide">
+      <h3>What is a home server good for?</h3>
+      <ul>
+        <li class="slide">Home automation!</li>
+        <li class="slide">Running your awesome Django app *all the time*</li>
+        <li class="slide">Email</li>
+        <li class="slide">Your own web services:
+          <ul>
+            <li class="slide">Bookmarks (e.g. <a href="https://github.com/bookieio/Bookie">Bookie</a>)</li>
+            <li class="slide">RSS reader (e.g. <a href="https://github.com/samuelclay/NewsBlur">NewsBlur</a>)</li>
+            <li class="slide">Notes (e.g. <a href="http://etherpad.org/">Etherpad</a>)</li>
+            <li class="slide">Photos (e.g. <a href="http://mediagoblin.org/">MediaGoblin</a>)</li>
+            <li class="slide">Music (e.g. <a href="http://www.fomori.org/cherrymusic/">CherryMusic</a>)</li>
+          </ul>
+        </li>
+        <li class="slide">&amp;c.</li>
+      </ul>
+      <div class="notes">but rewarding too! privacy, warrants, control, won't get shut down</div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <div class="notes">(asheesh: lamson demo)</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h3>hello@pycon.duckdns.org</h3>
+	<div class="notes">volunteer!! send me email, great, thx</div>
+	<div class="notes">next == port forwarding</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        Home port forwarding
+      </div>
+      <div class="notes">
+	if you are on port 8000 and want to be on port 80
+      </div>
+    </section>
+
+    <section class="slide">
+        <img src="img/routerforwarding0.png">
+    </section>
+
+    <section class="slide">
+        <img src="img/routerforwarding1.png">
+    </section>
+
+    <section class="slide">
+        <img src="img/routerforwarding2.png">
+      <div class="notes">
+	next: to make that real, UI will look like
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <img src="img/tomato.png">
+      </div>
+      <div class="notes">
+	next: what is my ip?
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h3>what is my ip?</h3>
+	<p class="slide">
+	  <img src="http://rose.makesad.us/~paulproteus/google-what-ip.png">
+	</p>
+      </div>
+      <div class="notes">
+	next: dyndns
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h3>hello@pycon.duckdns.org</h3>
+	<img style="opacity: 0;" src="http://www.duckdns.org/img/ducky_icon.png">
+      </div>
+      <div class="notes">
+	next: DUCK
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+	<h3><span class="pale">hello@pycon.</span>duckdns.org</h3>
+	<img src="http://www.duckdns.org/img/ducky_icon.png">
+      </div>
+      <div class="notes">
+	dyndns important b/c IPs change; thx duck for adding feature; next: scroll through email
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <div class="notes">now you sent me email, i want to read it; go back to demo; ask, any limitations</div>
+      </div>
+    </section>
+
+     <section class="slide">
+        <h2>Knowing your limits</h2>
+        <ul>
+          <li class="slide">Bandwidth</li>
+          <li class="slide">"Buffer bloat"</li>
+          <li class="slide">Max connections</li>
+          <li class="slide">ISP rules</li>
+          <li class="slide">ISP firewalls</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <div class="notes">switch to back to Eventbrite Security Engineer Asheesh</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div>
+        <h3>Risks</h3>
+	<div class="notes">apply to all web apps</div>
+	<div class="notes">next: unavailable if get popular</div>
+	<p class="slide">
+	  <img src="http://rose.makesad.us/~paulproteus/broken-netscape.png">
+	</p>
+	<div class="notes">next: access other users' private info; security bug or bad passwd</div>
+	<p class="slide">
+	  <img src="http://openclipart.org/people/Anonymous/Anonymous_lock_-_open.svg" width="200">
+	</p>
+	<div class="notes">next: settings</div>
+	<p class="slide">
+	  <img src="http://openclipart.org/people/nefigcas/engrane.svg" width="200">
+	</p>
+	<div class="notes">next: upside down</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="valign">
+	<img src="http://www.ex-parrot.com/pete/shot1.png">
+      </div>
+      <div class="notes">next: at home, e.g. router</div>
+    </section>
+
+    <section class="slide">
+      <div>
+        <h3>Risks at home</h3>
+	<div class="notes">router: bad password, upside down, attack other computers</div>
+	<div class="notes">computer: attack yours, add key logger</div>
+	<div class="column" style="width: auto;">
+	  <p>
+	    <img src="http://rose.makesad.us/~paulproteus/broken-netscape.png">
+	  </p>
+	  <p>
+	    <img src="http://openclipart.org/people/Anonymous/Anonymous_lock_-_open.svg" width="200">
+	  </p>
+	  <p>
+	    <img src="http://openclipart.org/people/nefigcas/engrane.svg" width="100">
+	  </p>
+	</div>
+	<div class="column another-column" style="margin-left: auto; width: auto;">
+	  <p>
+	    <img src="img/just-router.png" width="200">
+	  </p>
+	  <p>
+	    <img src="http://openclipart.org/people/arnelsx/keyboard-mouse.svg" width="200">
+	  </p>
+	</div>
+      </div>
+      <div class="notes">next: mitigating</div>
+    </section>
+
+    <section class="slide">
+      <div>
+        <h3>Mitigating</h3>
+	<div class="notes">next: upgrade; twiki story</div>
+	<ul>
+	  <li class="slide">Upgrade</li>
+	  <div class="notes">next: Backups</div>
+	  <li class="slide">Backups</li>
+	  <div class="notes">next: separate</div>
+	  <li class="slide">Separate...</li>
+	  <div class="notes">next: user account</div>
+	  <li class="slide">user account</li>
+	  <div class="notes">next: machine</div>
+	  <li class="slide">machine</li>
+	  <div class="notes">next: network</div>
+	  <li class="slide">network (DMZ)</li>
+	  <div class="notes">next: owasp</div>
+	  <li class="slide">Learn: OWASP Top 10</li>
+	</ul>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <img src="http://upload.wikimedia.org/wikipedia/commons/9/93/CCCamp_2007_19.jpg">
+      </div>
+      <div class="notes">1. parents call (2) hang up (3) check mail (4) surf web =&gt; google (5) jonathan (6) move image (7) apologize. Next: thanks</div>
+    </section>
+
+    <section class="slide">
+        <h2>Takeaways</h2>
+        <ul>
+          <li>You understand basic networking.</li>
+          <li>If you're online, you can run a server.</li>
+          <li>You can do it reasonably safely, too!</li>
+        </ul>
+      <div class="notes">next: truly final</div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter">
+        <h1>homeserver.io</h1>
+        <h4>Karen Rustad &#8226; Asheesh Laroia</h4>
+        <h4>@whoisaldeka &#8226; @asheeshlaroia</h4>
+        <h4>aldeka@aldeka.net &#8226; asheesh@asheesh.org</h4>
+      </div>
+      <div class="notes">next: thank video team, thank you for listening, further reading</div>
+    </section>
+
+    <section class="slide">
+      <div class="vcenter leftie">
+      <h3>Further reading</h3>
+      <div style="font-size: .45em;">
+      <div class="column">
+        <ul>
+          <li><a href="http://serverfault.com/questions/78048/whats-the-difference-between-ip-address-0-0-0-0-and-127-0-0-1">More about 0.0.0.0</a></li>
+          <li><a href="http://computer.howstuffworks.com/nat.htm">More about NAT</a></li>
+          <li><a href="https://tools.ietf.org/html/rfc1918">More about private IP addresses</a></li>
+          <li><a href="http://lanyrd.com/2013/pycon/scdyrr/">"How the Internet Works" by Jessica McKellar</a>, for more about DNS and IP</li>
+          <li><a href="http://portforward.com">Port forwarding details</a> for many home wifi routers</li>
+          <li><a href="http://noip.com">noip.com</a>: a reasonable, free of cost for limited use, dynamic DNS service</li>
+          <li>Two open source tunnel services:
+            <ul><li><a href="https://ngrok.com/">https://ngrok.com/</a> (free for most use, inexpensive for advanced use)</li>
+              <li><a href="https://pagekite.net/">https://pagekite.net/</a> (free for open source developers, inexpensive for all)</li>
+            </ul></li>
+        </ul>
+      </div>
+      <div class="column another-column">
+        <ul>
+          <br>
+          <li><a href="http://www.princeton.edu/~saha/instant-sharing/">SimpleHTTPServer tutorial</a></li>
+          <li><a href="http://stackoverflow.com/questions/5280827/can-someone-explain-ssh-tunnel-in-a-simple-way">Overview of SSH tunneling</a></li>
+          <li><a href="http://www.worldipv6launch.org/measurements/">IPv6 metrics on deployment</a></li>
+          <li><a href="http://www.remlab.net/miredo/">More about Miredo</a></li>
+          <li>Security & scale considerations:
+            <ul><li><a href="http://stackoverflow.com/questions/12732182/ab-load-testing">Load testing</a></li>
+            <li>Buffer bloat articles: <a href="http://arstechnica.com/tech-policy/2011/01/understanding-bufferbloat-and-the-network-buffer-arms-race/">[1]</a> <a href="http://freecode.com/projects/wshaper">[2]</a></li>
+            <li><a href="http://en.wikipedia.org/wiki/DMZ_(computing)">Creating "DMZs"</a></li>
+            <li><a href="https://www.owasp.org/index.php/Top_10_2013-Top_10">Open Web Application Security Project's Top 10 vulnerabilities</a></li></ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    </div>
+    </section>
+
+    <!-- End slides. -->
+
+    <!-- Begin extension snippets. Add or remove as needed. -->
+
+    <!-- deck.navigation snippet 
+    <div aria-role="navigation">
+      <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+      <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+    </div>
+
+    <!-- deck.status snippet 
+    <p class="deck-status" aria-role="status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.goto snippet 
+    <form action="." method="get" class="goto-form">
+      <label for="goto-slide">Go to slide:</label>
+      <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+      <datalist id="goto-datalist"></datalist>
+      <input type="submit" value="Go">
+    </form>
+
+    <!-- End extension snippets. -->
+  </div>
+
+<!-- Required JS files. -->
+<script src="jquery.min.js"></script>
+<script src="core/deck.core.js"></script>
+
+<!-- Extension JS files. Add or remove as needed. -->
+<script src="extensions/menu/deck.menu.js"></script>
+<script src="extensions/goto/deck.goto.js"></script>
+<script src="extensions/status/deck.status.js"></script>
+<!-- <script src="extensions/navigation/deck.navigation.js"></script> -->
+<script src="extensions/scale/deck.scale.js"></script>
+<script src="extensions/clone/deck.clone.js"></script>
+        <style type="text/css">
+            body.has-clones .deck-container {background: grey;}
+            body div.notes { display: none; }
+            body.has-clones div.notes { color: white; font-weight: 300; font-size: .9em;display: block; text-shadow: 0 0 4px black; z-index: 2;}
+        </style>
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+  $(function() {
+    $.deck('.slide');
+  });
+</script>
+</body>
+</html>
