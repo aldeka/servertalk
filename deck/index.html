@@ -128,7 +128,7 @@
 
     <section class="slide">
       <div class="vcenter">
-        <div class="notes">Why didn't that work?</div>
+        <div class="notes">To figure out why that didn't work, and how to fix it, look at a different tool for...</div>
       </div>
     </section>
 
@@ -152,7 +152,7 @@
         <img class="chibi" src="img/me.png">
         <code><center>http://mycomputer.local:8000</center></code>
         </div>
-        <div class="notes">Great for quick viewing and sharing of HTML/CSS/JS projects. Works even at mycomputer.local. Why?</div>
+        <div class="notes">Great for quick viewing and sharing of HTML/CSS/JS projects. Works even at mycomputer.local, though django's built-in server doesn't. Compare the two.</div>
       </div>
     </section>
 
@@ -170,7 +170,7 @@
         <img class="chibi" src="img/me.png">
         <code><center>http://mycomputer.local:8000</center></code>
         </div>
-        <div class="notes">Huh. What's this 0.0.0.0 thing?</div>
+        <div class="notes">Notice this 0.0.0.0 thing.</div>
       </div>
     </section>
 
@@ -249,7 +249,7 @@
         <code>http://mycomputer.local:8000</code>
         <br><br>
         <img class="slide" src="img/itworks.png">
-        <div class="notes">It works! But why did it work?</div>
+        <div class="notes">It works! Still don't know why, or what 0.0.0.0 means.</div>
       </div>
     </section>
 
@@ -279,12 +279,12 @@
 
     <section class="slide">
       <img src="img/ports2.png">
-      <div class="notes">Can connect to them from outside</div>
+      <div class="notes">Can connect to them from outside. Reality is a bit more complicated than this model, though, because interfaces.</div>
     </section>
 
     <section class="slide">
       <img src="img/interfaces.png">
-      <div class="notes">Physical interfaces have each their own bank of ports -- wifi, ethernet, local loopback</div>
+      <div class="notes">Physical interfaces have each their own bank of ports -- wifi, ethernet, local loopback. ifconfig</div>
     </section>
 
     <section class="slide">
@@ -299,21 +299,21 @@
 
     <section class="slide">
       <div class="vcenter">
-        <div class="notes">Can show off to roommate, others on same network</div>
+        <div class="notes">Can now show work to roommate, others on same network</div>
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
         <img src="img/third.png" class="chibi">
-        How to share your work with others?
+        Show to friends on other networks. To learn how to do this, need to learn how computers talk to each other across the internet:
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
         <h2>IP addresses</h2>
-        <div class="notes">To learn how, need to learn about how computers talk to each other across the internet: IP addresses. Two kinds of IP addresses</div>
+        <div class="notes">IP addresses. Two kinds of IP addresses</div>
       </div>
     </section>
 
@@ -326,6 +326,7 @@
 
     <section class="slide">
       <img src="img/nat0.png">
+      <div class="notes">Work only within left side of diagram</div>
     </section>
 
     <section class="slide">
@@ -336,7 +337,7 @@
         <li class="slide">172.[16 through 31].x.x</li>
         <li class="slide">10.x.x.x</li>
         </ul>
-        <div class="notes">Certain IP address blocks assigned</div>
+        <div class="notes">Certain IP address blocks assigned. Can see private IP address a few ways, ifconfig for one. another...</div>
       </div>
     </section>
 
@@ -378,7 +379,7 @@
 Serving HTTP on 0.0.0.0 port 8000 ...<br>
 <span class="highlight">172.27.0.14</span> - - [11/Mar/2014 12:51:33] "GET / HTTP/1.1" 200 -
 </code>
-      <div class="notes">...different private IP address!</div>
+      <div class="notes">...there's your private IP address on current network!</div>
       </div>
     </section>
 
@@ -440,7 +441,7 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
 
     <section class="slide">
       <div class="vcenter">
-        <div class="notes">Transition back to Karen: Real websites have public IP addresses, but your computer almost certainly doesn't. So how does it connect to the internet?</div>
+        <div class="notes">Transition back to Karen: Real websites have public IP addresses, but your computer almost certainly doesn't. And yet your computer can still communicate with the rest of the internet. It's able to do so because of a trick your router does called</div>
       </div>
     </section>
 
@@ -458,7 +459,7 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
 
     <section class="slide">
       <img src="img/nat-router.png">
-      <div class="notes">how does your router keep track of whose traffic is whose?</div>
+      <div class="notes">router has to keep track of whose traffic is whose</div>
     </section>
 
     <section class="slide">
@@ -509,20 +510,22 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
     <section class="slide">
       <div class="vcenter">
         <img src="img/third.png" class="chibi">
-        How can we get around this?
+        Still want to share outside the local network
+        <div class="notes">Need to get around this</div>
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
         <h2>SSH tunneling</h2>
+        <div class="notes">SSH does lots of things,</div>
       </div>
     </section>
 
     <section class="slide">
       <div class="vcenter">
         Remote port forwarding using SSH
-        <div class="notes">SSH does lots of things, but this is what we're doing with it</div>
+        <div class="notes">but this is what we're doing with it</div>
       </div>
     </section>
 
@@ -710,12 +713,13 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
     <section class="slide">
       <div class="vcenter">
         <h2>Running an always-up** server at home</h2>
-        <div class="notes">sysadminning is sometimes fun and exciting</div>
+        <div class="notes">Like computer ownership in general, sysadminning is sometimes fun and exciting</div>
       </div>
     </section>
 
     <section class="slide">
         <img src="img/downtimeabbey.png">
+        <div class="notes">reasons maintaining a home server may be worth it for you</div>
     </section>
 
     <section class="slide">
@@ -735,7 +739,7 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
         </li>
         <li class="slide">&amp;c.</li>
       </ul>
-      <div class="notes">but rewarding too! privacy, warrants, control, won't get shut down</div>
+      <div class="notes">privacy, warrants, control, won't get shut down by Yahoo</div>
     </section>
 
     <section class="slide">
@@ -819,7 +823,7 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
 
     <section class="slide">
       <div class="vcenter">
-        <div class="notes">now you sent me email, i want to read it; go back to demo; ask, any limitations</div>
+        <div class="notes">now you sent me email, i want to read it; go back to demo; ask, any limitations? K: some of those emails had huge attachments</div>
       </div>
     </section>
 
@@ -836,7 +840,7 @@ Serving HTTP on 0.0.0.0 port 8000 ...<br>
 
     <section class="slide">
       <div class="vcenter">
-        <div class="notes">switch to back to Eventbrite Security Engineer Asheesh</div>
+        <div class="notes">let Eventbrite Security Engineer Asheesh talk about security considerations</div>
       </div>
     </section>
 
