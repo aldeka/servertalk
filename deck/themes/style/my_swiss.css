@@ -435,3 +435,7 @@ a:hover, a:focus {
   margin-left: 21em;
   float: none;
 }
+
+code .highlight {
+  font-family: monospace, sans-serif;
+}
