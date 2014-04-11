@@ -5,7 +5,7 @@ To set up the ngrok part of the tutorial:
 * bin/pip install -r requirements.txt
 * bin/python manage.py runserver
 
-Switch user to "demo", and run:
+Switch user to "dummy", and run:
 
 * ngrok -subdomain="pycon" 8000
 
